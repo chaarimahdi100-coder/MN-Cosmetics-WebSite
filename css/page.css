@@ -1,11 +1,9 @@
 /*  HEADER  */
 .header {
-    background-color: #4e0423; 
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: #4e0423;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid #e91e63;
 }
 
 
@@ -129,4 +127,16 @@ footer {
 footer p {
   margin: 5px 0;               
   font-size: 16px;
+}
+/* Améliorations de la page d'accueil */
+h3 {
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
