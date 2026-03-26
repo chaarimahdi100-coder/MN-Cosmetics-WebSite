@@ -35,6 +35,13 @@
     <input type="number" class="qty" value="1" min="1" max="99" onkeydown="controleNombre(event)">
     <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
 </div>
+<p class="description-produit">
+    💄 Lip Gloss brillant et hydratant. Disponible en 3 teintes : Rose Fuchsia, Beige Poudré et Rouge Foncé. 
+    Tenue 8h avec fini glossy premium.
+</p>
+<div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+    ⭐⭐⭐⭐⭐ 4.8/5 (42 avis)
+</div>
 
 <!-- Produit 2 -->
 <div class="produit" onmouseover="mettreFond(this, 'yellow')" onmouseout="mettreFond(this, 'white')">
@@ -50,6 +57,9 @@
     <label>Quantité :</label>
     <input type="number" class="qty" value="1" min="1" max="99" onkeydown="controleNombre(event)">
     <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+</div>
+<div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+    ⭐⭐⭐⭐⭐ 4.8/5 (42 avis)
 </div>
 
 <!-- Produit 3 -->
@@ -73,6 +83,9 @@
     </select>
     <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
 </div>
+<div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+    ⭐⭐⭐⭐⭐ 4.8/5 (42 avis)
+</div>
 
 <!-- Produit 4 -->
 <div class="produit" onmouseover="mettreFond(this, 'Beige')" onmouseout="mettreFond(this, 'white')">
@@ -93,17 +106,42 @@
         <option value="Beige">Beige</option>
         <option value="Rouge Foncé">Rouge Foncé</option>
     </select>
-    <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+    <button onclick="ajouterAuPanier(this)" 
+        style="background-color: #e91e63; color: white; padding: 10px 20px; 
+               border: none; border-radius: 5px; cursor: pointer; font-weight: bold;
+               transition: all 0.3s ease;">
+    🛒 Ajouter au panier
+</button>
+</div>
+<div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+    ⭐⭐⭐⭐⭐ 4.8/5 (42 avis)
 </div>
 
 <!-- RÉCAP PANIER -->
+ <div style="background-color: #fff0f6; padding: 20px; border-radius: 10px; margin: 20px 0;">
+    <h2 style="color: #4e0423;"> Votre Panier</h2>
+    <p style="color: #666;">Consultez et modifiez vos produits sélectionnés</p>
+</div>
 <h2>Total du panier : <span id="total-general">0 DT</span></h2>
+<div id="resume-panier" style="background-color: #f8bbd0; padding: 15px; border-radius: 8px; margin: 15px 0;">
+    <h3>Résumé de votre commande</h3>
+    <p>Nombre d'articles : <span id="nombre-articles">0</span></p>
+    <p>Total TTC : <strong id="total-ttc">0 DT</strong></p>
+    <p style="color: #666; font-size: 12px;">Frais de port gratuits pour les commandes > 100 DT</p>
+</div>
 
 <h3>Récapitulatif :</h3>
 <div id="listeCommandes"></div>
 
 <!-- Boutons -->
-<button onclick="validerCommande()">Valider la commande</button>
+<div style="text-align: center; margin: 20px 0;">
+    <button onclick="validerCommande()" style="background-color: #4e0423; color: white; padding: 15px 30px; font-size: 16px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+        ✓ Valider la commande
+    </button>
+    <button onclick="resetPanier()" style="background-color: #999; color: white; padding: 15px 30px; font-size: 16px; border-radius: 5px; cursor: pointer;">
+        🔄 Vider le panier
+    </button>
+</div>
 <button onclick="resetPanier()">Réinitialiser</button>
 
 <br><br>
