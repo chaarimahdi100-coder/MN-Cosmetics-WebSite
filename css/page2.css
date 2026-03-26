@@ -1,0 +1,159 @@
+/* --- STYLE GLOBAL (valable pour toutes les pages) --- */
+
+ .header {
+    background-color: #4e0423;
+    color: white;
+    padding: 15px 30px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.4em;
+    color: #fff;
+}
+
+.header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.header nav a:hover {
+    background-color: #e7b7ca;
+}   
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e1b8b8; /* rose clair */
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Conteneur central (optionnel) */
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* --- TITRES --- */
+h1, h2 {
+    text-align: center;
+    color: #4e0423; /* bordeaux */
+}
+
+/* --- FORMULAIRE D’INSCRIPTION --- */
+
+form {
+    background: #fff;
+    padding: 20px;
+    border: 2px solid #f8bbd0;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    color: #4e0423;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f8bbd0;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4e0423;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #7c0654;
+}
+
+/* --- LIEN ENTRE PAGES --- */
+
+a {
+    color: #4e0423;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- PAGE COMMANDE (produits) --- */
+
+.produit {
+    width: 250px;
+    background: #fff;
+    border: 2px solid #f8bbd0;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px auto;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.imgProduit {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* coupe l’image proprement */
+    border-radius: 8px;
+}
+
+/* --- TOTAL PANIER --- */
+#total {
+    color: #4e0423;
+    font-weight: bold;
+}
+
+/* --- FOOTER OPTIONNEL --- */
+
+footer {
+  background-color: #7a4d5c;   /* rose glamour */
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;         /* coins arrondis comme les autres sections */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* petite ombre */
+
+}
+
+footer p {
+  margin: 5px 0;               /* espace entre les lignes */
+  font-size: 16px;
+}
+
+.choix-teintes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.choix-teintes input[type="color"] {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    cursor: default;
+}
