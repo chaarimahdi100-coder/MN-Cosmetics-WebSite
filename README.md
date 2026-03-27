@@ -224,7 +224,7 @@ main (version stable)
 
 **Fichier concerné :** `html/page1.html`
 
-**Cause :** Mariem et Nour modifiaient la même section footer en même temps sur deux branches différentes. Lors du merge de la branche de Nour dans `develop`, Git a détecté une incompatibilité entre les deux versions.
+**Cause :** Mahdi et hamza modifiaient la même section footer en même temps sur deux branches différentes. Lors du merge de la branche de Nour dans `develop`, Git a détecté une incompatibilité entre les deux versions.
 
 **Méthode de résolution :**
 
@@ -237,13 +237,13 @@ git merge origin/develop
 
 # Ouvrir le fichier — Git marque le conflit ainsi :
 <<<<<<< HEAD
-    <p>Email : contact@MNcosmetics.tn</p>   ← version de Nour
+    <p>Email : contact@MNcosmetics.tn</p>   ← version de hamza
 =======
-    <p>Email : contact@beauty.tn</p>        ← version de Mariem
+    <p>Email : contact@beauty.tn</p>        ← version de Mahdi
 >>>>>>> origin/develop
 
 # Décision après discussion sur GitHub :
-# Garder la version de Nour (contact@MNcosmetics.tn)
+# Garder la version de hamza (contact@MNcosmetics.tn)
 # et supprimer les marqueurs de conflit
 
 # Valider la résolution
