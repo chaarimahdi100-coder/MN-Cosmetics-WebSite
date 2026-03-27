@@ -143,10 +143,10 @@ git rebase --continue
 
 ```bash
 # Après un conflit :
-# 1. Ouvrir le fichier en conflit dans l'éditeur
-# 2. Chercher les marqueurs : <<<<<<< HEAD, =======, >>>>>>>
+# 1. Ouvrir le fichier en conflit
+# 2. Chercher <<<<<<<, =======, >>>>>>>
 # 3. Choisir la bonne version et supprimer les marqueurs
-# 4. Sauvegarder le fichier
+# 4. Sauvegarder
 
 git add fichier-conflit.html
 git commit -m "fix: résoudre conflit footer"
@@ -178,14 +178,23 @@ main (version stable)
 
 ```
 1. Créer une branche feature depuis develop
+        ↓
 2. Développer la fonctionnalité (au moins 5 commits clairs)
+        ↓
 3. Synchroniser avec develop (git fetch + git merge ou rebase)
+        ↓
 4. Pousser la branche sur GitHub (git push origin feature-nom)
+        ↓
 5. Créer une Pull Request (base: develop ← compare: feature-nom)
+        ↓
 6. Au moins 1 reviewer examine le code et commente
+        ↓
 7. Discussion dans les commentaires + modifications si nécessaire
+        ↓
 8. Reviewer approuve (bouton "Approve")
+        ↓
 9. Merger la PR dans develop
+        ↓
 10. Supprimer la branche feature (nettoyage)
 ```
 
@@ -214,7 +223,27 @@ main (version stable)
 
 ## 🔄 Gestion des Pull Requests
 
-*(inchangé, conserver la même description détaillée que l'ancien README)*
+### Créer une Pull Request
+
+1. Aller sur GitHub → onglet **Pull requests**
+2. Cliquer sur **New pull request**
+3. Sélectionner : `base: develop` ← `compare: feature-nom`
+4. Remplir le **titre**
+5. Remplir la **description complète**
+6. Assigner un **reviewer**
+7. Cliquer **Create pull request**
+
+### Validation avant merge
+
+* ✅ Description complète présente
+* ✅ Au moins 5 commits clairs et professionnels
+* ✅ Code testé localement
+* ✅ Style cohérent avec la charte couleur
+* ✅ Au moins 1 reviewer a approuvé
+* ✅ Tous les commentaires ont une réponse
+* ✅ "Able to merge" affiché (pas de conflits)
+* ✅ Responsive design testé
+* ✅ Pas d'erreurs JavaScript console
 
 ---
 
@@ -222,37 +251,19 @@ main (version stable)
 
 ### Conflit résolu — Footer (26/03/2026)
 
-**Fichier concerné :** `html/page3.html`
-
-**Cause :** Mahdi et hamza modifiaient la même section footer en même temps sur deux branches différentes. Lors du merge de la branche de Nour dans `develop`, Git a détecté une incompatibilité entre les deux versions.
-
+**Fichier concerné :** `html/page1.html`
+**Cause :** Mariem et Nour modifiaient la même section footer sur deux branches.
 **Méthode de résolution :**
 
 ```bash
-# Nour récupère develop à jour
 git fetch origin
 git merge origin/develop
-
-# Git signale : CONFLICT (content): Merge conflict in html/page3.html
-
-# Ouvrir le fichier — Git marque le conflit ainsi :
-<<<<<<< HEAD
-    <p>Email : contact@MNcosmetics.tn</p>   ← version de hamza
-=======
-    <p>Email : contact@beauty.tn</p>        ← version de Mahdi
->>>>>>> origin/develop
-
-# Décision après discussion sur GitHub :
-# Garder la version de hamza (contact@MNcosmetics.tn)
-# et supprimer les marqueurs de conflit
-
-# Valider la résolution
+# conflit signalé par Git
+# ouvrir le fichier et choisir la version finale
 git add html/page1.html
-git commit -m "fix: résoudre conflit footer — version contact@MNcosmetics.tn retenue"
-git push origin feature-accessibilite
+git commit -m "fix: résoudre conflit footer — version finale retenue"
+git push origin feature-footer
 ```
-
-**Leçon apprise :** Toujours synchroniser avec develop avant de commencer à travailler (`git pull origin develop`) pour réduire les risques de conflits.
 
 ---
 
@@ -267,7 +278,7 @@ git push origin feature-accessibilite
 | 10 | Ajouter validation HTML5 sur les inputs du formulaire         | mimisomai            | enhancement   |
 | 9  | Implémenter localStorage pour persister le panier             | kohinour17-cloud     | bug           |
 | 8  | Bug - Alert bloque l'interface                                | mimisomai            | bug           |
-| 8  | Ajouter un système de toast notifications                     | mimisomai            | enhancement   |
+| 7  | Ajouter un système de toast notifications                     | mimisomai            | enhancement   |
 
 ---
 
@@ -281,7 +292,50 @@ git push origin feature-accessibilite
 
 ## 📝 Commits significatifs par membre
 
-*(inchangé, conserver la même section que l'ancien README)*
+### Mahdi
+
+```
+feat: initialiser structure du projet avec fichiers HTML CSS JS
+feat: créer structure de base de la page d'accueil
+feat: ajouter section des meilleures ventes avec table
+style: améliorer design du header avec ombre et bordure
+feat: créer navbar commune à toutes les pages
+style: rendre navbar responsive avec flexbox
+```
+
+### Mariem
+
+```
+feat: créer structure du formulaire d'inscription
+feat: ajouter champ de confirmation email
+style: styliser les champs du formulaire d'inscription
+feat: ajouter fonctions de validation robustes (regex email + password)
+style: améliorer bouton d'inscription
+feat: créer footer avec informations de contact sur les 3 pages
+```
+
+### Nour
+
+```
+feat: créer page panier avec structure HTML
+feat: ajouter résumé de commande personnalisé
+feat: implémenter logique du panier avec calculs dynamiques
+style: styliser le résumé du panier et liste commandes
+feat: ajouter descriptions détaillées des produits
+feat: ajouter section avis et notes pour chaque produit
+```
+
+### Hamza
+
+```
+feat: ajouter media queries pour mobile (max-width 768px)
+style: rendre section et contenu responsive
+style: adapter formulaires pour mobile
+style: adapter grille produits pour petit écran
+feat: ajouter attributs alt sur toutes les images
+feat: ajouter labels et aria-labels pour accessibilité
+feat: ajouter skip-links et améliorer navigation au clavier
+```
 
 ---
 
@@ -301,13 +355,41 @@ git push origin feature-accessibilite
 
 ## 🎯 Critères d'évaluation (20 points)
 
-*(inchangé, conserver la même section que l'ancien README)*
+| Critère                      | Détails                                           | Points |
+| ---------------------------- | ------------------------------------------------- | ------ |
+| Utilisation de Git et GitHub | Dépôt bien structuré, branches, commits réguliers | 2      |
+| Collaboration et répartition | Issues, pull requests, discussions                | 1      |
+| Gestion des conflits         | Résoudre un conflit Git correctement              | 1      |
+| Documentation                | README.md complet                                 | 1      |
+| Présentation PowerPoint      | Démo du workflow GitHub                           | 5      |
+| Discussion                   | Répondre aux questions                            | 10     |
+| **TOTAL**                    |                                                   | **20** |
 
 ---
 
 ## 💡 Bonnes pratiques respectées
 
-*(inchangé, conserver la même section que l'ancien README)*
+### Git
+
+* ✅ Messages de commit clairs et en format `type: description`
+* ✅ Commits petits et significatifs (1 feature = 1 commit)
+* ✅ Synchronisation régulière avec develop (`git pull`)
+* ✅ Jamais de commit direct dans `main` ou `develop`
+* ✅ Chaque branche feature créée depuis `develop`
+
+### Code
+
+* ✅ HTML sémantique et bien indenté
+* ✅ CSS cohérent avec la charte couleur
+* ✅ JavaScript commenté et structuré
+* ✅ Pas d'erreurs dans la console navigateur
+
+### Collaboration
+
+* ✅ Pull Requests avec descriptions complètes
+* ✅ Code review constructive et détaillée
+* ✅ Réponses aux commentaires rapides et argumentées
+* ✅ Respect du workflow défini par l'équipe
 
 ---
 
@@ -321,7 +403,19 @@ git push origin feature-accessibilite
 
 ## ✅ Checklist final avant livraison
 
-*(inchangé, conserver la même section que l'ancien README)*
+* [x] Dépôt GitHub privé créé et structuré
+* [x] Tous les membres invités comme collaborateurs
+* [x] Branche `develop` créée et utilisée
+* [x] Chaque membre a créé au moins 2 branches feature
+* [x] Au moins 5 commits significatifs par membre
+* [x] Au moins 8 GitHub Issues créées et assignées
+* [x] GitHub Project Board configuré (To Do / In Progress / Review / Done)
+* [x] Au moins 2 Pull Requests par membre
+* [x] Code review avec commentaires constructifs
+* [x] Au moins 1 conflit Git provoqué et résolu
+* [x] README.md complet documentant tout le projet
+* [x] PowerPoint de présentation préparé (10-15 slides)
+* [x] Lien du dépôt soumis sur Blackboard avant le 29/03/2026
 
 ---
 
