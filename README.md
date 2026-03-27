@@ -233,7 +233,7 @@ main (version stable)
 git fetch origin
 git merge origin/develop
 
-# Git signale : CONFLICT (content): Merge conflict in html/page1.html
+# Git signale : CONFLICT (content): Merge conflict in html/page3.html
 
 # Ouvrir le fichier — Git marque le conflit ainsi :
 <<<<<<< HEAD
