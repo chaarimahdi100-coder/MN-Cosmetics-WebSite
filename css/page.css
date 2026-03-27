@@ -162,3 +162,93 @@ footer p {
         text-align: center;
     }
 }
+/* ===================== */
+/* RESPONSIVE DESIGN     */
+/* Mobile First Approach */
+/* ===================== */
+
+/* Tablet et Desktop : 768px et plus */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .header h1 {
+        font-size: 1.2rem;
+    }
+    
+    .header nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+    }
+    
+    .header nav a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+}
+@media (max-width: 768px) {
+    section {
+        padding: 10px;
+        margin-top: 10px;
+    }
+    
+    section p {
+        font-size: 14px;
+        margin: 10px;
+    }
+    
+    table {
+        width: 100%;
+        font-size: 12px;
+    }
+    
+    table img {
+        width: 150px;
+    }
+    
+    #reseaux {
+        padding: 15px;
+    }
+    
+    .reseaux-icons img {
+        width: 30px;
+    }
+}
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .header {
+        padding: 5px;
+    }
+    
+    .header h1 {
+        font-size: 1rem;
+    }
+    
+    .header nav a {
+        padding: 8px;
+        font-size: 12px;
+    }
+    
+    footer {
+        padding: 15px;
+        font-size: 12px;
+    }
+    
+    h1, h2, h3 {
+        font-size: 1rem;
+    }
+    
+    section {
+        padding: 8px;
+        margin: 5px;
+    }
+}
