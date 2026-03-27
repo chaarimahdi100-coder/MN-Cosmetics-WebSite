@@ -162,3 +162,29 @@ footer p {
         text-align: center;
     }
 }
+/* ========================= */
+/* ACCESSIBILITÉ - CONTRASTE */
+/* ========================= */
+
+body {
+    color: #222; /* Texte très foncé */
+}
+
+a {
+    color: #0066cc; /* Liens bien visibles */
+    text-decoration: underline;
+}
+
+label {
+    color: #222;
+    font-weight: bold; /* Labels en gras */
+}
+
+/* Contour visible quand on navigue au clavier */
+input:focus,
+select:focus,
+button:focus,
+a:focus {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+}
