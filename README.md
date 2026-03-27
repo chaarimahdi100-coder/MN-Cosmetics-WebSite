@@ -222,7 +222,7 @@ main (version stable)
 
 ### Conflit résolu — Footer (26/03/2026)
 
-**Fichier concerné :** `html/page1.html`
+**Fichier concerné :** `html/page3.html`
 
 **Cause :** Mahdi et hamza modifiaient la même section footer en même temps sur deux branches différentes. Lors du merge de la branche de Nour dans `develop`, Git a détecté une incompatibilité entre les deux versions.
 
