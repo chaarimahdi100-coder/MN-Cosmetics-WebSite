@@ -31,6 +31,11 @@ if (!email.includes("@") || !email.includes(".")) {
     alert("Veuillez entrer un email valide.");
     return false;
 }
+// Vérifier email valide
+function isValidEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
 
 // Vérification téléphone : 8 chiffres
 if (tel.length !== 8) {
@@ -49,6 +54,13 @@ for (let i = 0; i < tel.length; i++) {
 if (password.length < 8) {
     alert("Mot de passe trop court : minimum 8 caractères.");
     return false;
+}
+// Vérifier password fort
+function isStrongPassword(password) {
+    return password.length >= 8 && 
+           /[A-Z]/.test(password) && 
+           /[0-9]/.test(password) &&
+           /[!@#$%^&*]/.test(password);
 }
 
 // Vérifier présence d'une majuscule
