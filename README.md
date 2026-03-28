@@ -279,7 +279,11 @@ git push origin feature-footer
 | 9  | Implémenter localStorage pour persister le panier             | kohinour17-cloud     | bug           |
 | 8  | Bug - Alert bloque l'interface                                | mimisomai            | bug           |
 | 7  | Ajouter un système de toast notifications                     | mimisomai            | enhancement   |
-
+|    | ameliorer l'accebilité du site                                | HamzaBenRomdhane1    | enhancement   |
+|    |  rendre le site responsive                                    | HamzaBenRomdhane1    | enhancement   |
+|    |     developper la fonctionnalité panier                        | kohinour17-cloud     | enhancement  |
+|    |     developper la page produit et commande                     | kohinour17-cloud     | enhancement  |
+|    |   creer le formulaire d'inscription                           | mimisomai            | enhancement   |
 ---
 
 ## 📊 GitHub Project Board
