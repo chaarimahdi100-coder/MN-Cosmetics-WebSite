@@ -271,19 +271,19 @@ git push origin feature-footer
 
 | #  | Titre                                                         | Assigné à            | Label         |
 | -- | ------------------------------------------------------------- | -------------------- | ------------- |
-| 14 | Ajouter bouton "Supprimer" pour chaque article dans le panier | kohinour17-cloud     | enhancement   |
-| 13 | Optimiser les images avec WebP et lazy loading                | mimisomai            | enhancement   |
-| 12 | Bug - Images ne s'affichent pas correctement                  | chaarimahdi100-coder | bug           |
-| 11 | Documentation - Créer guide utilisateur complet               | kohinour17-cloud     | documentation |
-| 10 | Ajouter validation HTML5 sur les inputs du formulaire         | mimisomai            | enhancement   |
-| 9  | Implémenter localStorage pour persister le panier             | kohinour17-cloud     | bug           |
-| 8  | Bug - Alert bloque l'interface                                | mimisomai            | bug           |
-| 7  | Ajouter un système de toast notifications                     | mimisomai            | enhancement   |
-|    | ameliorer l'accebilité du site                                | HamzaBenRomdhane1    | enhancement   |
-|    |  rendre le site responsive                                    | HamzaBenRomdhane1    | enhancement   |
-|    |     developper la fonctionnalité panier                        | kohinour17-cloud     | enhancement  |
-|    |     developper la page produit et commande                     | kohinour17-cloud     | enhancement  |
-|    |   creer le formulaire d'inscription                           | mimisomai            | enhancement   |
+| 1 | Ajouter bouton "Supprimer" pour chaque article dans le panier | kohinour17-cloud     | enhancement   |
+| 2 | Optimiser les images avec WebP et lazy loading                | mimisomai            | enhancement   |
+| 3 | Bug - Images ne s'affichent pas correctement                  | chaarimahdi100-coder | bug           |
+| 4 | Documentation - Créer guide utilisateur complet               | kohinour17-cloud     | documentation |
+| 5 | Ajouter validation HTML5 sur les inputs du formulaire         | mimisomai            | enhancement   |
+| 6  | Implémenter localStorage pour persister le panier             | kohinour17-cloud     | bug           |
+| 7  | Bug - Alert bloque l'interface                                | mimisomai            | bug           |
+| 8  | Ajouter un système de toast notifications                     | mimisomai            | enhancement   |
+|  9  | ameliorer l'accebilité du site                                | HamzaBenRomdhane1    | enhancement   |
+|  10  |  rendre le site responsive                                    | HamzaBenRomdhane1    | enhancement   |
+| 11   |     developper la fonctionnalité panier                        | kohinour17-cloud     | enhancement  |
+|  12  |     developper la page produit et commande                     | kohinour17-cloud     | enhancement  |
+| 13   |   creer le formulaire d'inscription                           | mimisomai            | enhancement   |
 ---
 
 ## 📊 GitHub Project Board
