@@ -162,10 +162,11 @@ footer p {
         text-align: center;
     }
 }
-/* ===================== */
+ feature-responsive
+
 /* RESPONSIVE DESIGN     */
 /* Mobile First Approach */
-/* ===================== */
+
 
 /* Tablet et Desktop : 768px et plus */
 @media (max-width: 768px) {
@@ -251,4 +252,47 @@ footer p {
         padding: 8px;
         margin: 5px;
     }
+=======
+
+/* ACCESSIBILITÉ - CONTRASTE */
+
+
+body {
+    color: #222; /* Texte très foncé */
+}
+
+a {
+    color: #0066cc; /* Liens bien visibles */
+    text-decoration: underline;
+}
+
+label {
+    color: #222;
+    font-weight: bold; /* Labels en gras */
+}
+
+/* Contour visible quand on navigue au clavier */
+input:focus,
+select:focus,
+button:focus,
+a:focus {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+}
+/* Skip link - navigation clavier */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+/* Apparaît quand on appuie sur Tab */
+.skip-link:focus {
+    top: 0;
+ develop
 }
