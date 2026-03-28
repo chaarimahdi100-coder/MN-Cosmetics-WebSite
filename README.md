@@ -251,7 +251,7 @@ main (version stable)
 
 ### Conflit résolu — Footer (26/03/2026)
 
-**Fichier concerné :** `html/page1.html`
+**Fichier concerné :** `html/page3.html`
 **Cause :** Mariem et Nour modifiaient la même section footer sur deux branches.
 **Méthode de résolution :**
 
