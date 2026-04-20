@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  logger:
+    image: httpd:alpine
+    ports:
+      - "8081:80"
+    restart: unless-stopped

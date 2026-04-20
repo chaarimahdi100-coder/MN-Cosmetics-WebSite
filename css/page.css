@@ -161,6 +161,7 @@ footer p {
         width: 100%;
         text-align: center;
     }
+<<<<<<< HEAD
 }
  feature-responsive
 
@@ -295,4 +296,6 @@ a:focus {
 .skip-link:focus {
     top: 0;
  develop
+=======
+>>>>>>> origin/feature/nour-js-update
 }
