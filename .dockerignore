@@ -1,0 +1,8 @@
+.git
+node_modules/
+README.md
+.github/
+*.log
+.DS_Store
+*.tmp
+*.cache

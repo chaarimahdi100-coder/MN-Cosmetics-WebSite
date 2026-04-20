@@ -58,7 +58,36 @@ form {
     border-radius: 10px;
     margin-top: 20px;
 }
+form h2 {
+    color: #4e0423;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e91e63;
+    padding-bottom: 10px;
+}
 
+form label {
+    color: #4e0423;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select {
+    border: 2px solid #f8bbd0;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+    border-color: #e91e63;
+    box-shadow: 0 0 5px rgba(233, 30, 99, 0.3);
+}
 label {
     font-weight: bold;
     display: block;
@@ -156,4 +185,81 @@ footer p {
     border-radius: 5px;
     border: none;
     cursor: default;
+}
+
+
+.produit {
+    transition: all 0.3s ease;
+}
+
+.produit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.description-produit {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+    margin: 10px 0;
+    border-left: 3px solid #e91e63;
+    padding-left: 10px;
+}
+
+.nom-produit {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4e0423;
+}
+
+.prix-unitaire {
+    color: #e91e63;
+    font-weight: bold;
+    font-size: 16px;
+}
+button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.choix-teintes {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.choix-teintes label {
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#resume-panier {
+    border: 2px solid #e91e63;
+    transition: all 0.3s ease;
+}
+
+#resume-panier:hover {
+    box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3);
+    transform: translateY(-2px);
+}
+
+#listeCommandes {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+#listeCommandes p {
+    background-color: white;
+    padding: 10px;
+    border-left: 4px solid #e91e63;
+    margin: 10px 0;
+    border-radius: 4px;
+
 }
