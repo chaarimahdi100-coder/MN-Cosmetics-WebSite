@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Commande</title>
-    <link rel="stylesheet" href="page2.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="css/page2.css">
+    <script src="js/page.js"></script>
 </head>
 <body>
 
@@ -22,7 +22,7 @@
 
 <!-- Produit 1 -->
 <div class="produit" onmouseover="mettreFond(this, 'yellow')" onmouseout="mettreFond(this, 'white')">
-    <img src="WhatsApp Image 2026-03-24 at 1.08.03 PM.jpeg" class="imgProduit">
+    <img src="images/WhatsApp Image 2026-03-24 at 1.08.03 PM.jpeg" class="imgProduit">
     <p class="nom-produit">lip gloss</p>
     <p>Prix : <span class="prix-unitaire">30</span> DT</p>
     <label>Choisir la teinte :</label>
@@ -31,21 +31,21 @@
         <label><input type="radio" name="teinte_gloss" class="teinte" value="#E3B9A4"><input type="color" value="#E3B9A4" disabled></label>
         <label><input type="radio" name="teinte_gloss" class="teinte" value="#D9534F"><input type="color" value="#D9534F" disabled></label>
     </div>
-    <label>Quantité :</label>
+    <label>QuantitÃ© :</label>
     <input type="number" class="qty" value="1" min="1" max="99" onkeydown="controleNombre(event)">
     <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
 </div>
 <p class="description-produit">
-    💄 Lip Gloss brillant et hydratant. Disponible en 3 teintes : Rose Fuchsia, Beige Poudré et Rouge Foncé. 
+    ðŸ’„ Lip Gloss brillant et hydratant. Disponible en 3 teintes : Rose Fuchsia, Beige PoudrÃ© et Rouge FoncÃ©. 
     Tenue 8h avec fini glossy premium.
 </p>
 <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
-    ⭐⭐⭐⭐⭐ 4.8/5 (42 avis)
+    â­â­â­â­â­ 4.8/5 (42 avis)
 </div>
 
 <!-- Produit 2 -->
 <div class="produit" onmouseover="mettreFond(this, 'yellow')" onmouseout="mettreFond(this, 'white')">
-    <img src="WhatsApp Image 2026-03-24 at 1.08.03 PM5.jpeg" class="imgProduit">
+    <img src="images/WhatsApp Image 2026-03-24 at 1.08.03 PM5.jpeg" class="imgProduit">
     <p class="nom-produit">fond de teint couvrant</p>
     <p>Prix : <span class="prix-unitaire">70</span> DT</p>
     <label>Choisir la teinte :</label>
@@ -54,17 +54,17 @@
         <label><input type="radio" name="teinte_fdt" class="teinte" value="#D9A171"><input type="color" value="#D9A171" disabled></label>
         <label><input type="radio" name="teinte_fdt" class="teinte" value="#8B5A2B"><input type="color" value="#8B5A2B" disabled></label>
     </div>
-    <label>Quantité :</label>
+    <label>QuantitÃ© :</label>
     <input type="number" class="qty" value="1" min="1" max="99" onkeydown="controleNombre(event)">
     <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
 </div>
 <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
-    ⭐⭐⭐⭐⭐ 4.8/5 (42 avis)
+    â­â­â­â­â­ 4.8/5 (42 avis)
 </div>
 
 <!-- Produit 3 -->
 <div class="produit" onmouseover="mettreFond(this, 'Beige')" onmouseout="mettreFond(this, 'white')">
-    <img src="WhatsApp Image 2026-03-24 at 12.44.00 PM (3).jpeg" class="imgProduit">
+    <img src="images/WhatsApp Image 2026-03-24 at 12.44.00 PM (3).jpeg" class="imgProduit">
     <p class="nom-produit">blush</p>
     <p>Prix : <span class="prix-unitaire">30</span> DT</p>
     <label>Choisir la teinte :</label>
@@ -73,23 +73,23 @@
         <label><input type="radio" name="teinte_blush" class="teinte" value="#FFB085"><input type="color" value="#FFB085" disabled></label>
         <label><input type="radio" name="teinte_blush" class="teinte" value="#FF6F61"><input type="color" value="#FF6F61" disabled></label>
     </div>
-    <label>Quantité :</label>
+    <label>QuantitÃ© :</label>
     <input type="number" class="qty" value="1" min="1" max="99" onkeydown="controleNombre(event)">
     <label>Teinte :</label>
     <select class="teinte" onselect="changerTexte(this)">
         <option value="Rose Frais">Rose Frais</option>
-        <option value="Pêche">Pêche</option>
+        <option value="PÃªche">PÃªche</option>
         <option value="Corail">Corail</option>
     </select>
     <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
 </div>
 <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
-    ⭐⭐⭐⭐⭐ 4.8/5 (42 avis)
+    â­â­â­â­â­ 4.8/5 (42 avis)
 </div>
 
 <!-- Produit 4 -->
 <div class="produit" onmouseover="mettreFond(this, 'Beige')" onmouseout="mettreFond(this, 'white')">
-    <img src="WhatsApp Image 2026-03-24 at 1.08.04 PM.jpeg" class="imgProduit">
+    <img src="images/WhatsApp Image 2026-03-24 at 1.08.04 PM.jpeg" class="imgProduit">
     <p class="nom-produit">lip liner</p>
     <p>Prix : <span class="prix-unitaire">20</span> DT</p>
     <label>Choisir la teinte :</label>
@@ -98,60 +98,60 @@
         <label><input type="radio" name="teinte_liner" class="teinte" value="#D9B78C"><input type="color" value="#D9B78C" disabled></label>
         <label><input type="radio" name="teinte_liner" class="teinte" value="#8B0000"><input type="color" value="#8B0000" disabled></label>
     </div>
-    <label>Quantité :</label>
+    <label>QuantitÃ© :</label>
     <input type="number" class="qty" value="1" min="1" max="99" onkeydown="controleNombre(event)">
     <label>Teinte :</label>
     <select class="teinte" onselect="changerTexte(this)">
         <option value="Marron">Marron</option>
         <option value="Beige">Beige</option>
-        <option value="Rouge Foncé">Rouge Foncé</option>
+        <option value="Rouge FoncÃ©">Rouge FoncÃ©</option>
     </select>
     <button onclick="ajouterAuPanier(this)" 
         style="background-color: #e91e63; color: white; padding: 10px 20px; 
                border: none; border-radius: 5px; cursor: pointer; font-weight: bold;
                transition: all 0.3s ease;">
-    🛒 Ajouter au panier
+    ðŸ›’ Ajouter au panier
 </button>
 </div>
 <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
-    ⭐⭐⭐⭐⭐ 4.8/5 (42 avis)
+    â­â­â­â­â­ 4.8/5 (42 avis)
 </div>
 
-<!-- RÉCAP PANIER -->
+<!-- RÃ‰CAP PANIER -->
  <div style="background-color: #fff0f6; padding: 20px; border-radius: 10px; margin: 20px 0;">
     <h2 style="color: #4e0423;"> Votre Panier</h2>
-    <p style="color: #666;">Consultez et modifiez vos produits sélectionnés</p>
+    <p style="color: #666;">Consultez et modifiez vos produits sÃ©lectionnÃ©s</p>
 </div>
 <h2>Total du panier : <span id="total-general">0 DT</span></h2>
 <div id="resume-panier" style="background-color: #f8bbd0; padding: 15px; border-radius: 8px; margin: 15px 0;">
-    <h3>Résumé de votre commande</h3>
+    <h3>RÃ©sumÃ© de votre commande</h3>
     <p>Nombre d'articles : <span id="nombre-articles">0</span></p>
     <p>Total TTC : <strong id="total-ttc">0 DT</strong></p>
     <p style="color: #666; font-size: 12px;">Frais de port gratuits pour les commandes > 100 DT</p>
 </div>
 
-<h3>Récapitulatif :</h3>
+<h3>RÃ©capitulatif :</h3>
 <div id="listeCommandes"></div>
 
 <!-- Boutons -->
 <div style="text-align: center; margin: 20px 0;">
     <button onclick="validerCommande()" style="background-color: #4e0423; color: white; padding: 15px 30px; font-size: 16px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
-        ✓ Valider la commande
+        âœ“ Valider la commande
     </button>
     <button onclick="resetPanier()" style="background-color: #999; color: white; padding: 15px 30px; font-size: 16px; border-radius: 5px; cursor: pointer;">
-        🔄 Vider le panier
+        ðŸ”„ Vider le panier
     </button>
 </div>
-<button onclick="resetPanier()">Réinitialiser</button>
+<button onclick="resetPanier()">RÃ©initialiser</button>
 
 <br><br>
-<a href="page2.html">Retour à l'inscription</a>
+<a href="page2.html">Retour Ã  l'inscription</a>
 
 <footer>
     <ul>
         <li>Email : contact@M&Ncosmetics.tn</li>
         <li>WhatsApp : +216 22 345 678</li>
-        <li>©️ 2025 M&N Cosmetics Tous droits réservés</li>
+        <li>Â©ï¸ 2025 M&N Cosmetics Tous droits rÃ©servÃ©s</li>
     </ul>
 </footer>
 

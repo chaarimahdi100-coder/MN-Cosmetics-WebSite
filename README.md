@@ -26,3 +26,27 @@ Pour utiliser ce projet sur ton ordinateur :
 ```bash
 git clone https://github.com/chaarimahdi100-coder/MN-Cosmetics-WebSite.git
 cd MN-Cosmetics-WebSite
+
+## 🐳 Docker et CI/CD
+
+### Prérequis
+- Docker installé
+- Docker Compose installé
+- Utiliser les branches `main` et `develop`
+
+### Lancer l'application en local
+```bash
+docker compose up --build
+```
+Ouvrez ensuite `http://localhost:8080/page1.html` pour accéder à la page d'accueil.
+
+### Service de simulation multi-service
+Le service `logger` est disponible sur `http://localhost:8081`.
+
+### GitHub Actions
+Le workflow est défini dans `.github/workflows/ci.yml`.
+Il se déclenche sur :
+- `push` sur `main` et `develop`
+- `pull_request`
+
+Il vérifie la présence des fichiers essentiels puis construit l'image Docker.

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Inscription</title>
-    <link rel="stylesheet" href="page2.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="css/page2.css">
+    <script src="js/page.js"></script>
 </head>
 
 <body>
@@ -21,12 +21,12 @@
 <!-- Bouton pour changer le titre -->
 <button type="button" onclick="changerTitre()">Changer le titre</button>
 
-<!-- FORMULAIRE COMPLET ET CORRIGÉ -->
+<!-- FORMULAIRE COMPLET ET CORRIGÃ‰ -->
 <form onsubmit="return validerInscription()" id="formInscription">
 
     <h2>Formulaire d'inscription</h2>
     <p style="text-align: center; color: #4e0423; font-size: 16px;">
-    Rejoignez la communauté M&N Cosmetics et découvrez nos offres exclusives !
+    Rejoignez la communautÃ© M&N Cosmetics et dÃ©couvrez nos offres exclusives !
 </p>
 
     <!-- Informations personnelles -->
@@ -37,7 +37,7 @@
            onkeydown="detecterTouche(event)"
            onselect="texteSelectionne()"><br><br>
 
-    <label>Prénom :</label><br>
+    <label>PrÃ©nom :</label><br>
     <input type="text" id="prenom"
            onmouseover="mettreFond(this, 'green')" 
           
@@ -49,7 +49,7 @@
           <label>Confirmez votre email :</label><br>
 <input type="email" id="email-confirm" placeholder="Confirmez votre email"><br><br> 
 
-    <label>Téléphone :</label><br>
+    <label>TÃ©lÃ©phone :</label><br>
     <input type="text" id="telephone"><br><br>
 
     <label>Date de naissance :</label><br>
@@ -65,8 +65,8 @@
     <label>Confirmer le mot de passe :</label><br>
     <input type="password" id="confirmPassword"><br><br>
 
-    <!-- Préférences -->
-    <label>Préférences :</label><br>
+    <!-- PrÃ©fÃ©rences -->
+    <label>PrÃ©fÃ©rences :</label><br>
     <input type="checkbox" id="news"> Newsletters<br>
     <input type="checkbox" id="promo"> Offres promotionnelles<br><br>
 
@@ -76,22 +76,22 @@
     <input type="radio" name="genre" value="Femme"> Femme<br>
     <input type="radio" name="genre" value="Autre"> Autre<br><br>
 
-    <!-- Liste déroulante pays -->
+    <!-- Liste dÃ©roulante pays -->
     <label>Pays :</label><br>
     <select id="pays">
-        <option value="">-- Sélectionnez un pays --</option>
+        <option value="">-- SÃ©lectionnez un pays --</option>
         <option value="Tunisie">Tunisie</option>
         <option value="France">France</option>
         <option value="Italie">Italie</option>
-        <option value="Algérie">Algérie</option>
+        <option value="AlgÃ©rie">AlgÃ©rie</option>
         <option value="Maroc">Maroc</option>
         <option value="Canada">Canada</option>
     </select><br><br>
 
-    <!-- Conditions générales -->
+    <!-- Conditions gÃ©nÃ©rales -->
     <label>
         <input type="checkbox" id="conditions">
-        J’accepte les conditions générales
+        Jâ€™accepte les conditions gÃ©nÃ©rales
     </label><br><br>
 
     <!-- Boutons -->
@@ -100,22 +100,14 @@
 </button>
     <button type="button" onclick="ajouter()">Ajouter</button>
     <button type="button" onclick="modifier()">Modifier</button>
-    <button type="button" onclick="ecraser()">Écraser</button>
-    <button type="reset">Réinitialiser</button>
+    <button type="button" onclick="ecraser()">Ã‰craser</button>
+    <button type="reset">RÃ©initialiser</button>
 
 </form>
 
 <br><br>
-<a href="page3.html">Aller à la page commande</a>
+<a href="page3.html">Aller Ã  la page commande</a>
 
-<<<<<<< Updated upstream
-<footer>
-    <ul>
-        <li>Email : contact@M&Ncosmetics.tn</li>
-        <li>WhatsApp : +216 22 345 678</li>
-        <li>© 2025 M&N Cosmetics Tous droits réservés</li>
-    </ul>
-=======
 <footer style="margin-top: 40px;">
     <div style="background-color: #7a4d5c; color: white; padding: 20px; border-radius: 10px; text-align: center;">
         <h3>M&N Cosmetics</h3>
@@ -126,5 +118,4 @@
             <li>© 2026 M&N Cosmetics - Tous droits réservés</li>
         </ul>
     </div>
->>>>>>> Stashed changes
 </footer>

@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  validate:
+    name: Validation HTML/CSS/JS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Vérifier les fichiers essentiels
+        run: |
+          python - <<'PY'
+          import pathlib, sys
+          files = [
+            'page1.html',
+            'page2.html',
+            'page3.html',
+            'css/page.css',
+            'css/page2.css',
+            'js/page.js',
+            'Dockerfile',
+            'docker-compose.yml'
+          ]
+          missing = [f for f in files if not pathlib.Path(f).is_file()]
+          if missing:
+              print('Fichiers manquants:', missing)
+              sys.exit(1)
+          print('Validation minimale réussie : tous les fichiers sont présents.')
+          PY
+
+  build:
+    name: Construire l'image Docker
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installer Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Construire l'image Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: mn-cosmetics:ci
