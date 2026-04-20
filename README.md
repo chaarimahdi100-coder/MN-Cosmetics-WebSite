@@ -18,35 +18,108 @@ Le projet est organisé en 4 dossiers principaux :
 - **js/** - Fichiers JavaScript pour la logique
 - **images/** - Images des produits
 
-## 🚀 Installation
+## 🚀 Installation rapide
 
-Pour utiliser ce projet sur ton ordinateur :
+### Prérequis
+- Docker 29.2+
+- Docker Compose 5.0+
+- Git
 
-1. Clone le repo :
+### Cloner le repo
 ```bash
 git clone https://github.com/chaarimahdi100-coder/MN-Cosmetics-WebSite.git
 cd MN-Cosmetics-WebSite
+```
 
-## 🐳 Docker et CI/CD
+---
 
-### Prérequis
-- Docker installé
-- Docker Compose installé
-- Utiliser les branches `main` et `develop`
+## 🐳 Démarrage avec Docker
 
-### Lancer l'application en local
+### Lancer les services (Linux/macOS)
 ```bash
 docker compose up --build
 ```
-Ouvrez ensuite `http://localhost:8080/page1.html` pour accéder à la page d'accueil.
 
-### Service de simulation multi-service
-Le service `logger` est disponible sur `http://localhost:8081`.
+### Lancer les services (Windows - PowerShell)
+```powershell
+docker compose up --build
+# OU utiliser le script helper
+.\dev.bat up
+```
 
-### GitHub Actions
-Le workflow est défini dans `.github/workflows/ci.yml`.
-Il se déclenche sur :
-- `push` sur `main` et `develop`
-- `pull_request`
+### Accéder au site
+- Site principal : **http://localhost:8080/page1.html**
+- Service logger : **http://localhost:8081**
 
-Il vérifie la présence des fichiers essentiels puis construit l'image Docker.
+### Arrêter les services
+```bash
+docker compose down
+```
+
+---
+
+## 📚 Scripts disponibles
+
+### 🐧 Linux/macOS (Makefile)
+```bash
+make help       # Voir toutes les commandes
+make up         # Lancer les services
+make down       # Arrêter les services
+make logs       # Voir les logs en direct
+make test       # Tester la build Docker
+make clean      # Nettoyer
+```
+
+### 🪟 Windows (Script batch)
+```powershell
+.\dev.bat           # Voir toutes les commandes
+.\dev.bat up        # Lancer les services
+.\dev.bat down      # Arrêter les services
+.\dev.bat logs      # Voir les logs en direct
+.\dev.bat test      # Tester la build Docker
+.\dev.bat push "message"  # Commiter et pousser
+```
+
+---
+
+## 🔄 Git Workflow
+
+### Créer une branche feature
+```bash
+git switch develop
+git pull origin develop
+git switch -c feature/ma-fonctionnalite
+```
+
+### Pousser et créer une PR
+```bash
+git add .
+git commit -m "feat: Ma description"
+git push -u origin feature/ma-fonctionnalite
+```
+
+👉 Créer une Pull Request sur GitHub
+
+### Fusionner après approbation
+- ✅ Minimum 2 approbations (pour `main`)
+- ✅ Tests GitHub Actions doivent passer
+- ✅ Pas de conflits
+
+---
+
+## 🔐 GitHub Actions (CI/CD)
+
+### Pipeline automatique (`.github/workflows/ci.yml`)
+
+1. **Validation** : Vérifier les fichiers essentiels
+2. **Build** : Construire l'image Docker
+3. **Security** : Scanner les vulnérabilités (Trivy)
+
+Voir l'onglet **Actions** du dépôt pour les résultats.
+
+---
+
+## 📖 Documentation complète
+
+- 📋 [BRANCH_PROTECTION.md](./BRANCH_PROTECTION.md) - Règles de protection et workflow Git
+- 📚 [DEVOPS.md](./DEVOPS.md) - Guide DevOps complet
