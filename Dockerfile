@@ -18,10 +18,13 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # --- Étape 4 : Copier les fichiers du site web ---
-COPY index.html /usr/share/nginx/html/
-COPY page1.html /usr/share/nginx/html/
-COPY page2.html /usr/share/nginx/html/
-COPY page3.html /usr/share/nginx/html/
+# Page d'entrée principale
+COPY index.html /usr/share/nginx/html/index.html
+
+# Pages HTML (dans le dossier html/)
+COPY html/ /usr/share/nginx/html/html/
+
+# Assets statiques
 COPY css/ /usr/share/nginx/html/css/
 COPY js/ /usr/share/nginx/html/js/
 COPY images/ /usr/share/nginx/html/images/

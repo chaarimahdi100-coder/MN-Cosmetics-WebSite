@@ -14,9 +14,6 @@ on:
       - main
       - develop
 
-# ============================================================
-# Permissions minimales (bonne pratique sécurité)
-# ============================================================
 permissions:
   contents: read
   security-events: write
@@ -26,148 +23,176 @@ jobs:
   # ÉTAPE 1 — TESTS : Validation des fichiers HTML/CSS
   # ==========================================================
   test:
-    name: ✅ Test & Validation
+    name: "Test and Validation"
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout du code
+      - name: Checkout du code
         uses: actions/checkout@v4
 
-      - name: 🔎 Vérification de la structure du projet
+      - name: Verification de la structure du projet
         run: |
           echo "=== Vérification des fichiers obligatoires ==="
-          required_files=("index.html" "page1.html" "page2.html" "Dockerfile" "docker-compose.yml" "nginx.conf")
           all_ok=true
-          for file in "${required_files[@]}"; do
-            if [ -f "$file" ]; then
-              echo "✅ $file trouvé"
-            else
-              echo "❌ ERREUR : $file manquant !"
-              all_ok=false
-            fi
-          done
+
+          # Vérifier index.html à la racine
+          if [ -f "index.html" ]; then
+            echo "OK index.html trouve"
+          else
+            echo "ERREUR index.html manquant"
+            all_ok=false
+          fi
+
+          # Vérifier Dockerfile
+          if [ -f "Dockerfile" ]; then
+            echo "OK Dockerfile trouve"
+          else
+            echo "ERREUR Dockerfile manquant"
+            all_ok=false
+          fi
+
+          # Vérifier docker-compose.yml
+          if [ -f "docker-compose.yml" ]; then
+            echo "OK docker-compose.yml trouve"
+          else
+            echo "ERREUR docker-compose.yml manquant"
+            all_ok=false
+          fi
+
+          # Vérifier nginx.conf
+          if [ -f "nginx.conf" ]; then
+            echo "OK nginx.conf trouve"
+          else
+            echo "ERREUR nginx.conf manquant"
+            all_ok=false
+          fi
+
+          # Vérifier le dossier html/
+          if [ -d "html" ]; then
+            echo "OK dossier html/ trouve"
+          else
+            echo "ERREUR dossier html/ manquant"
+            all_ok=false
+          fi
+
           if [ "$all_ok" = false ]; then
-            echo "Pipeline bloquée : des fichiers requis sont manquants."
+            echo "Pipeline bloquee : des fichiers requis sont manquants."
             exit 1
           fi
-          echo "✅ Tous les fichiers requis sont présents."
+          echo "Tous les fichiers requis sont presents."
 
-      - name: 📄 Validation basique du HTML
+      - name: Validation des fichiers HTML
         run: |
-          echo "=== Vérification du contenu HTML ==="
-          for html_file in index.html page1.html page2.html page3.html; do
-            if [ -f "$html_file" ]; then
-              # Vérifier que le fichier contient du HTML valide (DOCTYPE + html tags)
-              if grep -qi "<!DOCTYPE html>" "$html_file"; then
-                echo "✅ $html_file : DOCTYPE html présent"
-              else
-                echo "⚠️  $html_file : DOCTYPE html manquant"
-              fi
-              if grep -qi "<html" "$html_file" && grep -qi "</html>" "$html_file"; then
-                echo "✅ $html_file : balises <html> correctes"
-              else
-                echo "❌ $html_file : balises <html> incorrectes"
-                exit 1
-              fi
-            fi
-          done
-          echo "✅ Validation HTML réussie."
-
-      - name: 🎨 Vérification des fichiers CSS
-        run: |
-          echo "=== Vérification des fichiers CSS ==="
-          css_count=$(find ./css -name "*.css" 2>/dev/null | wc -l)
-          echo "→ Nombre de fichiers CSS trouvés : $css_count"
-          if [ "$css_count" -ge 1 ]; then
-            echo "✅ Fichiers CSS présents"
+          echo "=== Validation HTML ==="
+          # Vérifier index.html
+          if grep -qi "<!DOCTYPE html>" "index.html"; then
+            echo "OK index.html : DOCTYPE present"
           else
-            echo "⚠️  Aucun fichier CSS trouvé dans ./css"
+            echo "WARN index.html : DOCTYPE manquant"
           fi
 
-      - name: 🐳 Validation du Dockerfile
+          # Vérifier les pages dans html/
+          for html_file in html/page1.html html/page2.html html/page3.html; do
+            if [ -f "$html_file" ]; then
+              if grep -qi "<html" "$html_file" && grep -qi "</html>" "$html_file"; then
+                echo "OK $html_file : balises html correctes"
+              else
+                echo "ERREUR $html_file : balises html incorrectes"
+                exit 1
+              fi
+            else
+              echo "WARN $html_file non trouve"
+            fi
+          done
+          echo "Validation HTML reussie."
+
+      - name: Verification des fichiers CSS
         run: |
-          echo "=== Vérification du Dockerfile ==="
-          if grep -q "FROM nginx:alpine" Dockerfile; then
-            echo "✅ Image de base nginx:alpine utilisée"
+          echo "=== Vérification CSS ==="
+          css_count=$(find ./css -name "*.css" 2>/dev/null | wc -l)
+          echo "Nombre de fichiers CSS : $css_count"
+          if [ "$css_count" -ge 1 ]; then
+            echo "OK fichiers CSS presents"
           else
-            echo "❌ L'image de base doit être nginx:alpine"
+            echo "WARN aucun fichier CSS trouve dans ./css"
+          fi
+
+      - name: Validation du Dockerfile
+        run: |
+          echo "=== Validation Dockerfile ==="
+          if grep -q "FROM nginx:alpine" Dockerfile; then
+            echo "OK image de base nginx:alpine"
+          else
+            echo "ERREUR image de base incorrecte"
             exit 1
           fi
           if grep -q "EXPOSE" Dockerfile; then
-            echo "✅ Port exposé dans le Dockerfile"
+            echo "OK port expose dans le Dockerfile"
           else
-            echo "❌ Aucun port EXPOSE dans le Dockerfile"
+            echo "ERREUR pas de EXPOSE dans le Dockerfile"
             exit 1
           fi
-          echo "✅ Validation Dockerfile réussie."
+          echo "Validation Dockerfile reussie."
 
   # ==========================================================
   # ÉTAPE 2 — BUILD : Construction de l'image Docker
   # ==========================================================
   build:
-    name: 🐳 Build Docker Image
+    name: "Build Docker Image"
     runs-on: ubuntu-latest
-    needs: test       # Ne se lance qu'après le succès des tests
+    needs: test
 
     steps:
-      - name: 📥 Checkout du code
+      - name: Checkout du code
         uses: actions/checkout@v4
 
-      - name: 🔧 Configuration de Docker Buildx
+      - name: Configuration de Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: 🏗️ Construction de l'image Docker
+      - name: Construction de l image Docker
         run: |
           echo "=== Build de l'image mn-cosmetics:latest ==="
           docker build \
             --tag mn-cosmetics:latest \
             --tag mn-cosmetics:${{ github.sha }} \
-            --label "git-commit=${{ github.sha }}" \
-            --label "git-branch=${{ github.ref_name }}" \
             .
-          echo "✅ Image construite avec succès !"
+          echo "Image construite avec succes !"
 
-      - name: 🧪 Test du conteneur
+      - name: Test du conteneur
         run: |
-          echo "=== Lancement du conteneur de test ==="
+          echo "=== Test du conteneur ==="
           docker run -d \
             --name mn-cosmetics-test \
             -p 8080:80 \
             mn-cosmetics:latest
 
-          # Attendre que le conteneur soit prêt
-          echo "⏳ Attente du démarrage du conteneur..."
+          echo "Attente du démarrage (5s)..."
           sleep 5
 
-          # Vérifier que le site répond
           HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/ || echo "000")
-          echo "→ Code HTTP reçu : $HTTP_CODE"
+          echo "Code HTTP recu : $HTTP_CODE"
 
           if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "301" ] || [ "$HTTP_CODE" = "302" ]; then
-            echo "✅ Le site répond correctement (HTTP $HTTP_CODE)"
+            echo "OK le site repond correctement (HTTP $HTTP_CODE)"
           else
-            echo "❌ Le site ne répond pas correctement (HTTP $HTTP_CODE)"
+            echo "ERREUR le site ne repond pas (HTTP $HTTP_CODE)"
             docker logs mn-cosmetics-test
             exit 1
           fi
 
-          # Nettoyage
           docker stop mn-cosmetics-test
           docker rm mn-cosmetics-test
 
-      - name: 📊 Informations sur l'image
+      - name: Informations sur l image
         run: |
-          echo "=== Détails de l'image Docker ==="
-          docker image inspect mn-cosmetics:latest --format='Taille : {{.Size}} bytes'
           docker images mn-cosmetics:latest
-          echo "✅ Build Docker terminé avec succès."
+          echo "Build Docker termine avec succes."
 
-      - name: 💾 Export de l'image (artifact)
+      - name: Export de l image
         run: |
           docker save mn-cosmetics:latest | gzip > mn-cosmetics-image.tar.gz
-          echo "✅ Image exportée : mn-cosmetics-image.tar.gz"
 
-      - name: 📦 Upload de l'image comme artifact GitHub
+      - name: Upload artifact GitHub
         uses: actions/upload-artifact@v4
         with:
           name: docker-image-${{ github.sha }}
@@ -175,40 +200,37 @@ jobs:
           retention-days: 7
 
   # ==========================================================
-  # ÉTAPE 3 (BONUS) — SECURITY SCAN : Scan de vulnérabilités
+  # ÉTAPE 3 (BONUS) — SECURITY SCAN avec Trivy
   # ==========================================================
   security-scan:
-    name: 🔐 Security Scan (Trivy)
+    name: "Security Scan (Trivy)"
     runs-on: ubuntu-latest
-    needs: build       # Ne se lance qu'après le succès du build
+    needs: build
 
     steps:
-      - name: 📥 Checkout du code
+      - name: Checkout du code
         uses: actions/checkout@v4
 
-      - name: 🔧 Configuration de Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: 🏗️ Reconstruction de l'image pour le scan
+      - name: Reconstruction de l image pour le scan
         run: docker build --tag mn-cosmetics:scan .
 
-      - name: 🔍 Scan de vulnérabilités avec Trivy
+      - name: Scan de vulnerabilites avec Trivy (SARIF)
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'mn-cosmetics:scan'
           format: 'sarif'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH'
-          exit-code: '0'       # Ne pas bloquer sur vulnérabilités (rapport uniquement)
+          exit-code: '0'
 
-      - name: 📤 Upload des résultats Trivy vers GitHub Security
+      - name: Upload resultats Trivy vers GitHub Security
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
           sarif_file: 'trivy-results.sarif'
           category: 'trivy-docker-scan'
 
-      - name: 📋 Rapport texte Trivy
+      - name: Rapport texte Trivy
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'mn-cosmetics:scan'
