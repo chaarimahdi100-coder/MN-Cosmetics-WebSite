@@ -25,9 +25,9 @@ COPY index.html /usr/share/nginx/html/index.html
 COPY html/ /usr/share/nginx/html/html/
 
 # Assets statiques (copier dans le dossier html/ car c'est là que les fichiers HTML les cherchent)
-COPY css/* /usr/share/nginx/html/html/
-COPY js/* /usr/share/nginx/html/html/
-COPY images/* /usr/share/nginx/html/html/
+COPY css/ /usr/share/nginx/html/html/
+COPY js/ /usr/share/nginx/html/html/
+COPY images/ /usr/share/nginx/html/html/
 
 # --- Étape 5 : Exposer le port HTTP ---
 EXPOSE 80
