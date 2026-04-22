@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Commande</title>
+    <link rel="stylesheet" href="page2.css">
+    <script src="script.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <h1 id="titrePage" onmouseover="changerCouleur('titrePage', 'purple')" onmouseout="changerCouleur('titrePage', 'black')">M&N Cosmetics</h1>
+
+    <nav>
+        <a href="page1.html">Accueil</a>
+        <a href="page2.html">Inscription</a>
+        <a href="page3.html">Commande</a>
+    </nav>
+</header>
+
+<h1>Nos produits</h1>
+
+<!-- Produit 1 -->
+<div class="produit" onmouseover="mettreFond(this, 'yellow')" onmouseout="mettreFond(this, 'white')">
+    <img src="WhatsApp Image 2026-03-24 at 1.08.03 PM.jpeg" class="imgProduit">
+    <p class="nom-produit">lip gloss</p>
+    <p>Prix : <span class="prix-unitaire">30</span> DT</p>
+    <label>Choisir la teinte :</label>
+    <div class="choix-teintes">
+        <label><input type="radio" name="teinte_gloss" class="teinte" value="#FF69B4"><input type="color" value="#FF69B4" disabled></label>
+        <label><input type="radio" name="teinte_gloss" class="teinte" value="#E3B9A4"><input type="color" value="#E3B9A4" disabled></label>
+        <label><input type="radio" name="teinte_gloss" class="teinte" value="#D9534F"><input type="color" value="#D9534F" disabled></label>
+    </div>
+    <label>Quantité :</label>
+    <input type="number" class="qty" value="1" min="1" max="99" onkeydown="controleNombre(event)">
+    <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+</div>
+
+<!-- Produit 2 -->
+<div class="produit" onmouseover="mettreFond(this, 'yellow')" onmouseout="mettreFond(this, 'white')">
+    <img src="WhatsApp Image 2026-03-24 at 1.08.03 PM5.jpeg" class="imgProduit">
+    <p class="nom-produit">fond de teint couvrant</p>
+    <p>Prix : <span class="prix-unitaire">70</span> DT</p>
+    <label>Choisir la teinte :</label>
+    <div class="choix-teintes">
+        <label><input type="radio" name="teinte_fdt" class="teinte" value="#F3D7B9"><input type="color" value="#F3D7B9" disabled></label>
+        <label><input type="radio" name="teinte_fdt" class="teinte" value="#D9A171"><input type="color" value="#D9A171" disabled></label>
+        <label><input type="radio" name="teinte_fdt" class="teinte" value="#8B5A2B"><input type="color" value="#8B5A2B" disabled></label>
+    </div>
+    <label>Quantité :</label>
+    <input type="number" class="qty" value="1" min="1" max="99" onkeydown="controleNombre(event)">
+    <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+</div>
+
+<!-- Produit 3 -->
+<div class="produit" onmouseover="mettreFond(this, 'Beige')" onmouseout="mettreFond(this, 'white')">
+    <img src="WhatsApp Image 2026-03-24 at 12.44.00 PM (3).jpeg" class="imgProduit">
+    <p class="nom-produit">blush</p>
+    <p>Prix : <span class="prix-unitaire">30</span> DT</p>
+    <label>Choisir la teinte :</label>
+    <div class="choix-teintes">
+        <label><input type="radio" name="teinte_blush" class="teinte" value="#FF8FAB"><input type="color" value="#FF8FAB" disabled></label>
+        <label><input type="radio" name="teinte_blush" class="teinte" value="#FFB085"><input type="color" value="#FFB085" disabled></label>
+        <label><input type="radio" name="teinte_blush" class="teinte" value="#FF6F61"><input type="color" value="#FF6F61" disabled></label>
+    </div>
+    <label>Quantité :</label>
+    <input type="number" class="qty" value="1" min="1" max="99" onkeydown="controleNombre(event)">
+    <label>Teinte :</label>
+    <select class="teinte" onselect="changerTexte(this)">
+        <option value="Rose Frais">Rose Frais</option>
+        <option value="Pêche">Pêche</option>
+        <option value="Corail">Corail</option>
+    </select>
+    <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+</div>
+
+<!-- Produit 4 -->
+<div class="produit" onmouseover="mettreFond(this, 'Beige')" onmouseout="mettreFond(this, 'white')">
+    <img src="WhatsApp Image 2026-03-24 at 1.08.04 PM.jpeg" class="imgProduit">
+    <p class="nom-produit">lip liner</p>
+    <p>Prix : <span class="prix-unitaire">20</span> DT</p>
+    <label>Choisir la teinte :</label>
+    <div class="choix-teintes">
+        <label><input type="radio" name="teinte_liner" class="teinte" value="#4B2E1E"><input type="color" value="#4B2E1E" disabled></label>
+        <label><input type="radio" name="teinte_liner" class="teinte" value="#D9B78C"><input type="color" value="#D9B78C" disabled></label>
+        <label><input type="radio" name="teinte_liner" class="teinte" value="#8B0000"><input type="color" value="#8B0000" disabled></label>
+    </div>
+    <label>Quantité :</label>
+    <input type="number" class="qty" value="1" min="1" max="99" onkeydown="controleNombre(event)">
+    <label>Teinte :</label>
+    <select class="teinte" onselect="changerTexte(this)">
+        <option value="Marron">Marron</option>
+        <option value="Beige">Beige</option>
+        <option value="Rouge Foncé">Rouge Foncé</option>
+    </select>
+    <button onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+</div>
+
+<!-- RÉCAP PANIER -->
+<h2>Total du panier : <span id="total-general">0 DT</span></h2>
+
+<h3>Récapitulatif :</h3>
+<div id="listeCommandes"></div>
+
+<!-- Boutons -->
+<button onclick="validerCommande()">Valider la commande</button>
+<button onclick="resetPanier()">Réinitialiser</button>
+
+<br><br>
+<a href="page2.html">Retour à l'inscription</a>
+
+<footer>
+    <ul>
+        <li>Email : contact@M&Ncosmetics.tn</li>
+        <li>WhatsApp : +216 22 345 678</li>
+        <li>©️ 2025 M&N Cosmetics Tous droits réservés</li>
+    </ul>
+</footer>
+
+</body>
+</html>
