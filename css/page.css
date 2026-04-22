@@ -130,3 +130,37 @@ footer p {
   margin: 5px 0;               
   font-size: 16px;
 }
+
+footer {
+    margin-top: 50px;
+    background: linear-gradient(135deg, #7a4d5c, #4e0423);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+footer h3 {
+    color: #ffeb3b;
+    margin-bottom: 15px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer li {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+footer a {
+    color: #e91e63;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
