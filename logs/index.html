@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MN Cosmetics - Logger Service</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #1a1a2e; color: #e8e8f0; padding: 20px; }
+        h1 { color: #c792ea; }
+        .info { background: #16213e; border-left: 4px solid #c792ea; padding: 15px; margin: 10px 0; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>🪵 MN Cosmetics - Logger Service</h1>
+    <div class="info">
+        <p>✅ Service de logs actif</p>
+        <p>Ce service simule un second micro-service dans l'architecture Docker.</p>
+        <p>Site principal disponible sur : <a href="http://localhost:8080" style="color:#c792ea;">http://localhost:8080</a></p>
+    </div>
+    <div class="info">
+        <p><strong>Timestamp :</strong> <span id="ts"></span></p>
+    </div>
+    <script>document.getElementById('ts').textContent = new Date().toLocaleString('fr-FR');</script>
+</body>
+</html>

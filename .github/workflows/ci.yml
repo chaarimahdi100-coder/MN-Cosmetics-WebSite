@@ -1,0 +1,217 @@
+name: CI/CD - MN Cosmetics
+
+# ============================================================
+# Déclencheurs du workflow
+# ============================================================
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - 'feature-*'
+  pull_request:
+    branches:
+      - main
+      - develop
+
+# ============================================================
+# Permissions minimales (bonne pratique sécurité)
+# ============================================================
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  # ==========================================================
+  # ÉTAPE 1 — TESTS : Validation des fichiers HTML/CSS
+  # ==========================================================
+  test:
+    name: ✅ Test & Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v4
+
+      - name: 🔎 Vérification de la structure du projet
+        run: |
+          echo "=== Vérification des fichiers obligatoires ==="
+          required_files=("index.html" "page1.html" "page2.html" "Dockerfile" "docker-compose.yml" "nginx.conf")
+          all_ok=true
+          for file in "${required_files[@]}"; do
+            if [ -f "$file" ]; then
+              echo "✅ $file trouvé"
+            else
+              echo "❌ ERREUR : $file manquant !"
+              all_ok=false
+            fi
+          done
+          if [ "$all_ok" = false ]; then
+            echo "Pipeline bloquée : des fichiers requis sont manquants."
+            exit 1
+          fi
+          echo "✅ Tous les fichiers requis sont présents."
+
+      - name: 📄 Validation basique du HTML
+        run: |
+          echo "=== Vérification du contenu HTML ==="
+          for html_file in index.html page1.html page2.html page3.html; do
+            if [ -f "$html_file" ]; then
+              # Vérifier que le fichier contient du HTML valide (DOCTYPE + html tags)
+              if grep -qi "<!DOCTYPE html>" "$html_file"; then
+                echo "✅ $html_file : DOCTYPE html présent"
+              else
+                echo "⚠️  $html_file : DOCTYPE html manquant"
+              fi
+              if grep -qi "<html" "$html_file" && grep -qi "</html>" "$html_file"; then
+                echo "✅ $html_file : balises <html> correctes"
+              else
+                echo "❌ $html_file : balises <html> incorrectes"
+                exit 1
+              fi
+            fi
+          done
+          echo "✅ Validation HTML réussie."
+
+      - name: 🎨 Vérification des fichiers CSS
+        run: |
+          echo "=== Vérification des fichiers CSS ==="
+          css_count=$(find ./css -name "*.css" 2>/dev/null | wc -l)
+          echo "→ Nombre de fichiers CSS trouvés : $css_count"
+          if [ "$css_count" -ge 1 ]; then
+            echo "✅ Fichiers CSS présents"
+          else
+            echo "⚠️  Aucun fichier CSS trouvé dans ./css"
+          fi
+
+      - name: 🐳 Validation du Dockerfile
+        run: |
+          echo "=== Vérification du Dockerfile ==="
+          if grep -q "FROM nginx:alpine" Dockerfile; then
+            echo "✅ Image de base nginx:alpine utilisée"
+          else
+            echo "❌ L'image de base doit être nginx:alpine"
+            exit 1
+          fi
+          if grep -q "EXPOSE" Dockerfile; then
+            echo "✅ Port exposé dans le Dockerfile"
+          else
+            echo "❌ Aucun port EXPOSE dans le Dockerfile"
+            exit 1
+          fi
+          echo "✅ Validation Dockerfile réussie."
+
+  # ==========================================================
+  # ÉTAPE 2 — BUILD : Construction de l'image Docker
+  # ==========================================================
+  build:
+    name: 🐳 Build Docker Image
+    runs-on: ubuntu-latest
+    needs: test       # Ne se lance qu'après le succès des tests
+
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Configuration de Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🏗️ Construction de l'image Docker
+        run: |
+          echo "=== Build de l'image mn-cosmetics:latest ==="
+          docker build \
+            --tag mn-cosmetics:latest \
+            --tag mn-cosmetics:${{ github.sha }} \
+            --label "git-commit=${{ github.sha }}" \
+            --label "git-branch=${{ github.ref_name }}" \
+            .
+          echo "✅ Image construite avec succès !"
+
+      - name: 🧪 Test du conteneur
+        run: |
+          echo "=== Lancement du conteneur de test ==="
+          docker run -d \
+            --name mn-cosmetics-test \
+            -p 8080:80 \
+            mn-cosmetics:latest
+
+          # Attendre que le conteneur soit prêt
+          echo "⏳ Attente du démarrage du conteneur..."
+          sleep 5
+
+          # Vérifier que le site répond
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/ || echo "000")
+          echo "→ Code HTTP reçu : $HTTP_CODE"
+
+          if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "301" ] || [ "$HTTP_CODE" = "302" ]; then
+            echo "✅ Le site répond correctement (HTTP $HTTP_CODE)"
+          else
+            echo "❌ Le site ne répond pas correctement (HTTP $HTTP_CODE)"
+            docker logs mn-cosmetics-test
+            exit 1
+          fi
+
+          # Nettoyage
+          docker stop mn-cosmetics-test
+          docker rm mn-cosmetics-test
+
+      - name: 📊 Informations sur l'image
+        run: |
+          echo "=== Détails de l'image Docker ==="
+          docker image inspect mn-cosmetics:latest --format='Taille : {{.Size}} bytes'
+          docker images mn-cosmetics:latest
+          echo "✅ Build Docker terminé avec succès."
+
+      - name: 💾 Export de l'image (artifact)
+        run: |
+          docker save mn-cosmetics:latest | gzip > mn-cosmetics-image.tar.gz
+          echo "✅ Image exportée : mn-cosmetics-image.tar.gz"
+
+      - name: 📦 Upload de l'image comme artifact GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image-${{ github.sha }}
+          path: mn-cosmetics-image.tar.gz
+          retention-days: 7
+
+  # ==========================================================
+  # ÉTAPE 3 (BONUS) — SECURITY SCAN : Scan de vulnérabilités
+  # ==========================================================
+  security-scan:
+    name: 🔐 Security Scan (Trivy)
+    runs-on: ubuntu-latest
+    needs: build       # Ne se lance qu'après le succès du build
+
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Configuration de Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🏗️ Reconstruction de l'image pour le scan
+        run: docker build --tag mn-cosmetics:scan .
+
+      - name: 🔍 Scan de vulnérabilités avec Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'mn-cosmetics:scan'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '0'       # Ne pas bloquer sur vulnérabilités (rapport uniquement)
+
+      - name: 📤 Upload des résultats Trivy vers GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+          category: 'trivy-docker-scan'
+
+      - name: 📋 Rapport texte Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'mn-cosmetics:scan'
+          format: 'table'
+          severity: 'CRITICAL,HIGH,MEDIUM'
+          exit-code: '0'

@@ -1,0 +1,57 @@
+version: '3.8'
+
+# ============================================================
+# Docker Compose - MN Cosmetics
+# Services: web (nginx) + logger (httpd pour les logs)
+# ============================================================
+
+services:
+
+  # ---- Service principal : Site web MN Cosmetics ----
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mn-cosmetics-web
+    image: mn-cosmetics:latest
+    ports:
+      - "8080:80"           # Accès via http://localhost:8080
+    restart: unless-stopped
+    networks:
+      - cosmetics-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "com.mncosmetics.description=Site e-commerce MN Cosmetics"
+      - "com.mncosmetics.version=1.0"
+
+  # ---- Service BONUS : Logger (visualisation de logs) ----
+  logger:
+    image: httpd:alpine
+    container_name: mn-cosmetics-logger
+    ports:
+      - "8081:80"           # Accès via http://localhost:8081
+    volumes:
+      - ./logs:/usr/local/apache2/htdocs/
+    restart: unless-stopped
+    networks:
+      - cosmetics-network
+    depends_on:
+      - web
+    environment:
+      - APACHE_LOG_DIR=/var/log/apache2
+
+# ---- Réseau partagé entre les services ----
+networks:
+  cosmetics-network:
+    driver: bridge
+    name: cosmetics-net
+
+# ---- Volumes persistants ----
+volumes:
+  logs:
+    driver: local
