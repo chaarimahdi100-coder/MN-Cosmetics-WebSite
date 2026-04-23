@@ -397,6 +397,34 @@ feat: ajouter skip-links et améliorer navigation au clavier
 
 ---
 
+## 🐳 DS2 : Industrialisation (Docker & CI/CD)
+
+Ce projet a été complété par une partie DevOps (conteneurisation et intégration continue) dans le cadre du DS2. Voici l'ordre des étapes réalisées du début à la fin :
+
+### 1. Préparation de l'environnement Docker
+- **Création du `.dockerignore`** : Pour exclure les fichiers inutiles (comme `.git`, ou ce README) et optimiser la taille du build.
+
+### 2. Création des images et orchestration (Docker & Docker Compose)
+- **Création du `Dockerfile` (à la racine)** : Utilisation d'une image légère `nginx:alpine`. Ce fichier copie le contenu web statique dans le conteneur et expose le port 80.
+- **Configuration `nginx.conf`** : Configuration personnalisée ajoutée pour le bon routage du HTML et la compression.
+- **Création du `docker-compose.yml`** : Orchestration de 2 services en parallèle :
+  - Service principal `web` : accessible sur le port **8080**.
+  - Service bonus `logger` : ajouté pour simuler une véritable architecture multi-services (accessible sur le port **8081**).
+
+### 3. Mise en place de la CI/CD avec GitHub Actions
+- **Création du workflow `.github/workflows/ci.yml`** : La pipeline s'active automatiquement sur chaque Push / Pull Request vers les branches `main` et `develop`.
+- **Job 1 (Test & Validation)** : Le code vérifie la structure du projet, valide les balises HTML et la présence des CSS. 
+- **Job 2 (Build Docker Image)** : GitHub Actions simule la construction de l'image Docker (`docker build`) pour s'assurer que l'image peut se générer sans erreur.
+- **Job 3 (Security Scan - Bonus)** : Analyse des vulnérabilités de l'image Docker construite à l'aide de l'outil Trivy d'Aqua Security.
+
+### 4. Règles de protection de branche & Travail Collaboratif
+- **Développement sur branche séparée** : La fonctionnalité Docker a été encapsulée sur une branche `feature-docker-v1` pour simuler le développement collaboratif, avant le merge (avec cherry-pick temporaire lors des conflits).
+- **Règles GitHub (Branch Protection)** : La règle qui bloque la fusion dans `main` tant que les statuts de la pipeline CI/CD n'ont pas la "coche verte" ✔️ a été intégrée pour la livraison.
+
+> ℹ️ **Pour lancer ce projet via Docker localement :** tapez `docker compose up -d` pour admirer le résultat !
+
+---
+
 ## 📞 Contact
 
 * 📧 Email : [contact@MNcosmetics.tn](mailto:contact@MNcosmetics.tn)
