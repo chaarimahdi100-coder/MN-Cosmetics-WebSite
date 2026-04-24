@@ -421,6 +421,39 @@ Ce projet a été complété par une partie DevOps (conteneurisation et intégra
 - **Développement sur branche séparée** : La fonctionnalité Docker a été encapsulée sur une branche `feature-docker-v1` pour simuler le développement collaboratif, avant le merge (avec cherry-pick temporaire lors des conflits).
 - **Règles GitHub (Branch Protection)** : La règle qui bloque la fusion dans `main` tant que les statuts de la pipeline CI/CD n'ont pas la "coche verte" ✔️ a été intégrée pour la livraison.
 
+### 5. Aide-mémoire Terminal (Commandes de la Démo)
+
+Si vous devez présenter le projet, voici les commandes clés utilisées en coulisses et utiles pour le jour J :
+
+**Lancement et Test avec Docker :**
+```bash
+# 1. Construire et lancer les conteneurs en tâche de fond (-d)
+docker compose up -d --build
+
+# 2. Vérifier que les conteneurs sont "healthy" (en bonne santé)
+docker ps
+
+# 3. Afficher les logs du conteneur en direct
+docker logs -f mn-cosmetics-web
+
+# 4. Couper proprement les services à la fin
+docker compose down
+```
+
+**Historique des fusions Git (Workflow DS2) :**
+```bash
+# Workflow utilisé pour l'intégration continue
+git checkout -b feature-docker-v1
+git commit -m "feat(docker): Ajout Dockerfile, CI/CD..."
+git push origin feature-docker-v1
+
+# Fusions vers les branches d'intégration et principale
+git checkout develop
+git merge feature-docker-v1
+git checkout main
+git merge develop
+```
+
 > ℹ️ **Pour lancer ce projet via Docker localement :** tapez `docker compose up -d` pour admirer le résultat !
 
 ---
