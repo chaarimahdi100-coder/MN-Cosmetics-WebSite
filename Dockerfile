@@ -4,7 +4,8 @@
 # ============================================================
 
 # --- Étape 1 : Image de base légère ---
-FROM nginx:alpine
+# ERREUR INTENTIONNELLE : image incorrecte (devrait être nginx:alpine)
+FROM ubuntu:latest
 
 # --- Métadonnées ---
 LABEL maintainer="MN-Cosmetics Team"
