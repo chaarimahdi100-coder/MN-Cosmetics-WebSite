@@ -32,55 +32,7 @@ jobs:
 
       - name: Verification de la structure du projet
         run: |
-          echo "=== Vérification des fichiers obligatoires ==="
-          all_ok=true
-
-          # Vérifier index.html à la racine
-          if [ -f "index.html" ]; then
-            echo "OK index.html trouve"
-          else
-            echo "ERREUR index.html manquant"
-            all_ok=false
-          fi
-
-          # Vérifier Dockerfile
-          if [ -f "Dockerfile" ]; then
-            echo "OK Dockerfile trouve"
-          else
-            echo "ERREUR Dockerfile manquant"
-            all_ok=false
-          fi
-
-          # Vérifier docker-compose.yml
-          if [ -f "docker-compose.yml" ]; then
-            echo "OK docker-compose.yml trouve"
-          else
-            echo "ERREUR docker-compose.yml manquant"
-            all_ok=false
-          fi
-
-          # Vérifier nginx.conf
-          if [ -f "nginx.conf" ]; then
-            echo "OK nginx.conf trouve"
-          else
-            echo "ERREUR nginx.conf manquant"
-            all_ok=false
-          fi
-
-          # Vérifier le dossier html/
-          if [ -d "html" ]; then
-            echo "OK dossier html/ trouve"
-          else
-            echo "ERREUR dossier html/ manquant"
-            all_ok=false
-          fi
-
-          if [ "$all_ok" = false ]; then
-            echo "Pipeline bloquee : des fichiers requis sont manquants."
-            exit 1
-          fi
-          echo "Tous les fichiers requis sont presents."
-
+          exit 1
       - name: Validation des fichiers HTML
         run: |
           echo "=== Validation HTML ==="
