@@ -32,7 +32,7 @@ jobs:
 
       - name: Verification de la structure du projet
         run: |
-          exit 1
+         exit 1git
       - name: Validation des fichiers HTML
         run: |
           echo "=== Validation HTML ==="
